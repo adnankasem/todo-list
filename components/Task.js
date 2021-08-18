@@ -7,11 +7,10 @@ const Task = (props) => {
         <View style={styles.item}>
             <View styles={styles.itemLeft}>
                 <View style={styles.square}></View>
-                <Text style={styles.itemText}>{props.text}</Text>
-            </View>
-            <View style={styles.circular}>
 
             </View>
+            <Text style={styles.itemText}>{props.text}</Text>
+            <View style={styles.circular}></View>
         </View>
     )
 }
@@ -20,8 +19,6 @@ const styles = StyleSheet.create({
     item: {
         backgroundColor: 'white',
         padding: 15,
-        marginHorizontal: 10,
-        marginVertical: 5,
         borderRadius: 10,
         flexDirection: 'row',
         alignItems: 'center',
@@ -31,7 +28,8 @@ const styles = StyleSheet.create({
     itemLeft: {
         flexDirection: 'row',
         alignItems: 'center',
-        flexWrap: 'wrap'
+        flexWrap: 'wrap',
+
     },
     square: {
         width: 24,
@@ -43,6 +41,7 @@ const styles = StyleSheet.create({
     },
     itemText: {
         maxWidth: '80%'
+
     },
     circular: {
         width: 12,

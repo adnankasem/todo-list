@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { KeyboardAvoidingView, StyleSheet, Text, View, Platform, TextInput, TouchableOpacity, Keyboard } from 'react-native';
+import { KeyboardAvoidingView, StyleSheet, Text, View, Platform, TextInput, TouchableOpacity, Keyboard, ScrollView } from 'react-native';
 import Task from './components/Task';
 
 
@@ -26,21 +26,30 @@ export default function App() {
     <View style={styles.container}>
 
       {/* Today's Task */}
-      <View style={styles.taskWrapper}>
-        <Text style={styles.sectionTitle}>Today's tasks</Text>
-      </View>
-      <View style={styles.items}>
-        { /* This is where the tasks will go! */}
-        {
-          taskItems.map((item, index) => {
-            return (
-              <TouchableOpacity key={index} onPress={() => completeTask(index)}>
-                <Task text={item} />
-              </TouchableOpacity>
-            )
-          })
-        }
-      </View>
+      <ScrollView
+        contentContainerStyle={{
+          flexGrow: 1
+        }}
+        keyboardShouldPersistTaps='handled'
+      >
+        <View style={styles.taskWrapper}>
+          <Text style={styles.sectionTitle}>Today's tasks</Text>
+          <View style={styles.items}>
+            { /* This is where the tasks will go! */}
+            {
+              taskItems.map((item, index) => {
+                return (
+                  <TouchableOpacity key={index} onPress={() => completeTask(index)}>
+                    <Task text={item} />
+                  </TouchableOpacity>
+                )
+              })
+            }
+            <Task text='Soccer' />
+            <Task text='Workout' />
+          </View>
+        </View>
+      </ScrollView>
 
       {/* Write a task */}
       <KeyboardAvoidingView
@@ -51,7 +60,6 @@ export default function App() {
         <TouchableOpacity onPress={() => handleAddTask()} >
           <View style={styles.addWrapper}>
             <Text style={styles.addText}>+</Text>
-
           </View>
         </TouchableOpacity>
       </KeyboardAvoidingView>
@@ -102,7 +110,5 @@ const styles = StyleSheet.create({
     borderColor: '#C0C0C0',
     borderWidth: 1,
   },
-  addText: {
-
-  },
+  addText: {},
 });
